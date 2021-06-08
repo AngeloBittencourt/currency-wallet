@@ -4,24 +4,34 @@ import banner from '../images/wallet-money-removebg-preview.png';
 export default class LoginForm extends Component {
   constructor() {
     super();
+    this.onHandleChange = this.onHandleChange.bind(this);
+    this.validateLogin = this.validateLogin.bind(this);
     this.state = {
       email: '',
       password: '',
     };
   }
 
-  // onHandleChange = ({ target }) => {
-  //   this.setState({
-  //     [target.id]: target.value,
-  //   });
-  // }
-
-  const showAll = () => {
+  onHandleChange({ target }) {
     this.setState({
-      showAll: true,
-      showBtn: false
+      [target.id]: target.value,
     });
-  };
+    this.validateLogin();
+  }
+
+  validateLogin() {
+    const emailField = document.getElementById('email');
+    const passField = document.getElementById('password');
+    const button = document.getElementById('buttonLogin');
+    const re = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    const EMAIL_MIN_LENGHT = 6;
+
+    if (passField.value.length >= EMAIL_MIN_LENGHT && re.test(emailField.value)) {
+      button.disabled = false;
+    } else {
+      button.disabled = true;
+    }
+  }
 
   render() {
     return (
@@ -29,7 +39,7 @@ export default class LoginForm extends Component {
         <h1>Página de login</h1>
         <section>
           <img src={ banner } alt="Money Banner" width="300px" />
-          <form action="get">
+          <form>
             <label htmlFor="email">
               <input
                 placeholder="E-mail"
@@ -50,7 +60,15 @@ export default class LoginForm extends Component {
                 data-testid="password-input"
               />
             </label>
-            <button type="submit" disabled>Entrar</button>
+            <div id="error-nwl" />
+            <button
+              id="buttonLogin"
+              type="submit"
+              preventdefault="true"
+              disabled
+            >
+              Entrar
+            </button>
           </form>
         </section>
       </main>
