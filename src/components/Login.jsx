@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import banner from '../images/wallet-money-removebg-preview.png';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login as loginAction } from '../actions';
 
-export default class LoginForm extends Component {
+// import banner from '../images/wallet-money-removebg-preview.png';
+
+class LoginForm extends Component {
   constructor() {
     super();
     this.onHandleChange = this.onHandleChange.bind(this);
     this.validateLogin = this.validateLogin.bind(this);
     this.state = {
       email: '',
-      password: '',
     };
   }
 
@@ -34,44 +37,55 @@ export default class LoginForm extends Component {
   }
 
   render() {
+    const { email } = this.state;
+    const { login } = this.props;
     return (
       <main>
         <h1>Página de login</h1>
         <section>
-          <img src={ banner } alt="Money Banner" width="300px" />
-          <form>
-            <label htmlFor="email">
-              <input
-                placeholder="E-mail"
-                type="email"
-                name="email"
-                id="email"
-                onChange={ this.onHandleChange }
-                data-testid="email-input"
-              />
-            </label>
-            <label htmlFor="password">
-              <input
-                placeholder="Senha"
-                type="password"
-                name="password"
-                id="password"
-                onChange={ this.onHandleChange }
-                data-testid="password-input"
-              />
-            </label>
-            <div id="error-nwl" />
-            <button
-              id="buttonLogin"
-              type="submit"
-              preventdefault="true"
-              disabled
-            >
-              Entrar
-            </button>
-          </form>
+          {/* <img src={ banner } alt="Money Banner" width="300px" /> */}
+
+          <label htmlFor="email">
+            <input
+              placeholder="E-mail"
+              type="email"
+              name="email"
+              id="email"
+              onChange={ this.onHandleChange }
+              data-testid="email-input"
+            />
+          </label>
+          <label htmlFor="password">
+            <input
+              placeholder="Senha"
+              type="password"
+              name="password"
+              id="password"
+              onChange={ this.onHandleChange }
+              data-testid="password-input"
+            />
+          </label>
+          <button
+            onClick={ () => login(email) }
+            id="buttonLogin"
+            type="submit"
+            disabled
+          >
+            Entrar
+          </button>
+
         </section>
       </main>
     );
   }
 }
+
+LoginForm.propTypes = {
+  login: PropTypes.func,
+}.isRequired;
+
+const mapDispatchToProps = (dispatch) => ({
+  login: (e) => dispatch(loginAction(e)),
+});
+
+export default connect(null, mapDispatchToProps)(LoginForm);
