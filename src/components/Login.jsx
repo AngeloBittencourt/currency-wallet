@@ -8,10 +8,12 @@ import { login as loginAction } from '../actions';
 class LoginForm extends Component {
   constructor() {
     super();
+    this.onHandleClick = this.onHandleClick.bind(this);
     this.onHandleChange = this.onHandleChange.bind(this);
     this.validateLogin = this.validateLogin.bind(this);
     this.state = {
       email: '',
+      password: '',
     };
   }
 
@@ -19,26 +21,26 @@ class LoginForm extends Component {
     this.setState({
       [target.id]: target.value,
     });
-    this.validateLogin();
+  }
+
+  onHandleClick() {
+    const { login } = this.props;
+    const { email } = this.state;
+    login(email);
   }
 
   validateLogin() {
-    const emailField = document.getElementById('email');
-    const passField = document.getElementById('password');
-    const button = document.getElementById('buttonLogin');
+    const { email, password } = this.state;
     const re = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     const EMAIL_MIN_LENGHT = 6;
 
-    if (passField.value.length >= EMAIL_MIN_LENGHT && re.test(emailField.value)) {
-      button.disabled = false;
-    } else {
-      button.disabled = true;
+    if (password.length >= EMAIL_MIN_LENGHT && re.test(email)) {
+      return true;
     }
+    return false;
   }
 
   render() {
-    const { email } = this.state;
-    const { login } = this.props;
     return (
       <main>
         <h1>Página de login</h1>
@@ -65,14 +67,13 @@ class LoginForm extends Component {
               data-testid="password-input"
             />
           </label>
-          <button
-            onClick={ () => login(email) }
+          <input
             id="buttonLogin"
-            type="submit"
-            disabled
-          >
-            Entrar
-          </button>
+            type="button"
+            value="Entrar"
+            onClick={ this.onHandleClick }
+            disabled={ !this.validateLogin() }
+          />
 
         </section>
       </main>
@@ -85,7 +86,7 @@ LoginForm.propTypes = {
 }.isRequired;
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (e) => dispatch(loginAction(e)),
+  login: (email) => dispatch(loginAction(email)),
 });
 
 export default connect(null, mapDispatchToProps)(LoginForm);
