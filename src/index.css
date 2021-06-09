@@ -64,9 +64,11 @@ input {
   width: 100%;
 }
 
-#buttonLogin {
+a {
   display: flex;
-  width: 50%;
+  margin-bottom: 20px;
+  text-decoration: none;
+  width: 35%;
 }
 
 label , #email , #password  , #buttonLogin {
@@ -85,16 +87,16 @@ label , #email , #password  , #buttonLogin {
   background-color: #eee;
 }
 
-#buttonLogin {
+#buttonLogin:enabled {
   background-color: #00b9bc;
   color: #eee;
+  display: flex;
   font-weight: bold;
   justify-content: space-around;
-  margin-bottom: 20px;
   text-align: center;
   text-transform: uppercase;
 }
 
-#buttonLogin:focus ,#buttonLogin:hover {
+#buttonLogin:enabled:focus ,#buttonLogin:enabled:hover {
   background-color: #197071;
 }
