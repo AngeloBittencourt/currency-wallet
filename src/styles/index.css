@@ -154,3 +154,30 @@ header {
   display: flex;
   justify-content: space-between;
 }
+
+/* Fim do form */
+hr {
+  border-color: black;
+  margin: 0;
+  width: 100%;
+}
+
+table {
+  background: rgba(58, 63, 68, 0.5);
+  width: 100%;
+}
+
+thead tr {
+  color: white;
+  width: 100%;
+}
+
+th {
+  padding: 20px 45px;
+}
+
+td {
+  color: white;
+  max-width: 150px;
+  text-align: center;
+}
