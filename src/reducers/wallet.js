@@ -5,6 +5,8 @@ export default function wallet(state = initialState, action) {
   switch (action.type) {
   case 'ADD':
     return { ...state, expenses: [...state.expenses, action.expense] };
+  case 'UPDATE':
+    return { ...state, currencies: action.currency };
   default:
     return state;
   }

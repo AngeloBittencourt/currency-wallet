@@ -2,28 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import coinsFetch from '../services/Api';
-import { addExpense } from '../actions';
+import { addExpense, updateCurrencies } from '../actions';
 
 class ExpenseForm extends Component {
   constructor() {
     super();
-    this.onHandleChange = this.onChange.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.onHandleClick = this.onHandleClick.bind(this);
 
     this.state = {
-      exchangeRates: '',
-      isFetched: false,
       id: 0,
-      value: '',
+      value: 0,
       currency: 'USD',
       method: 'Dinheiro',
       tag: 'Alimentação',
       description: '',
+      exchangeRates: '',
     };
   }
 
   async componentDidMount() {
-    this.fetchCoins();
+    await this.fetchCoins();
   }
 
   onChange({ target }) {
@@ -42,12 +41,24 @@ class ExpenseForm extends Component {
   }
 
   async fetchCoins() {
+    const { currency } = this.props;
     const fetched = await coinsFetch();
     delete fetched.USDT;
-    this.setState({
-      exchangeRates: Object.values(fetched),
-      isFetched: true });
-    return fetched;
+    currency(Object.values(fetched));
+    this.setState({ exchangeRates: fetched });
+  }
+
+  renderDrop() {
+    const { currencies } = this.props;
+    if (currencies === '') {
+      console.log(currencies);
+      return <option value="BRL"> BRL </option>;
+    }
+
+    return currencies.map((moeda) => (
+      <option key={ moeda.code } value={ moeda.code }>
+        {moeda.code}
+      </option>));
   }
 
   renderButton() {
@@ -60,23 +71,17 @@ class ExpenseForm extends Component {
   }
 
   render() {
-    const { exchangeRates, isFetched } = this.state;
     return (
       <div className="div-form">
         <form className="form-expense">
-          <label htmlFor="valor">
+          <label htmlFor="value">
             Valor:
             <input className="vix" type="number" id="value" onChange={ this.onChange } />
           </label>
           <label htmlFor="currency">
             Moeda:
             <select name="moeda" id="currency" onChange={ this.onChange }>
-              {isFetched
-                ? exchangeRates.map((moeda) => (
-                  <option key={ moeda.code } value={ moeda.code }>
-                    {moeda.code}
-                  </option>
-                )) : <option value="BRL"> BRL </option>}
+              {this.renderDrop()}
             </select>
           </label>
           <label htmlFor="method">
@@ -84,7 +89,7 @@ class ExpenseForm extends Component {
             <select name="método de pagamento" id="method" onChange={ this.onChange }>
               <option value="Dinheiro">Dinheiro</option>
               <option value="Cartão de crédito">Cartão de crédito</option>
-              <option value="Debito">Cartão de débito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
             </select>
           </label>
           <label htmlFor="tag">
@@ -110,10 +115,15 @@ class ExpenseForm extends Component {
 
 ExpenseForm.propTypes = {
   expense: PropTypes.func.isRequired,
+  currency: PropTypes.func.isRequired,
+  currencies: PropTypes.arrayOf(Object).isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   expense: (expenses) => dispatch(addExpense(expenses)),
+  currency: (currencies) => dispatch(updateCurrencies(currencies)),
 });
 
-export default connect(null, mapDispatchToProps)(ExpenseForm);
+const mapStateToProps = ({ wallet: { currencies } }) => ({ currencies });
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseForm);
