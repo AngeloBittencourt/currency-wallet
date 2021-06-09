@@ -14,7 +14,7 @@ class ExpenseForm extends Component {
       exchangeRates: '',
       isFetched: false,
       id: 0,
-      valor: '',
+      value: '',
       currency: 'USD',
       method: 'Dinheiro',
       tag: 'Alimentação',
@@ -66,9 +66,9 @@ class ExpenseForm extends Component {
         <form className="form-expense">
           <label htmlFor="valor">
             Valor:
-            <input className="vix" type="number" id="valor" onChange={ this.onChange } />
+            <input className="vix" type="number" id="value" onChange={ this.onChange } />
           </label>
-          <label htmlFor="moeda">
+          <label htmlFor="currency">
             Moeda:
             <select name="moeda" id="currency" onChange={ this.onChange }>
               {isFetched
@@ -79,9 +79,9 @@ class ExpenseForm extends Component {
                 )) : <option value="BRL"> BRL </option>}
             </select>
           </label>
-          <label htmlFor="metodo">
+          <label htmlFor="method">
             Método de pagamento:
-            <select name="metodo" id="method" onChange={ this.onChange }>
+            <select name="método de pagamento" id="method" onChange={ this.onChange }>
               <option value="Dinheiro">Dinheiro</option>
               <option value="Cartão de crédito">Cartão de crédito</option>
               <option value="Debito">Cartão de débito</option>
@@ -97,7 +97,7 @@ class ExpenseForm extends Component {
               <option value="Saude">Saúde</option>
             </select>
           </label>
-          <label htmlFor="descricao">
+          <label htmlFor="description">
             Descrição:
             <input type="text" id="description" onChange={ this.onChange } />
           </label>
