@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
+import './styles/index.css';
 import Login from './pages/Login';
 import Wallet from './pages/Wallet';
 

@@ -120,11 +120,29 @@ header {
 /* Fim do Heder */
 .div-form {
   background: rgba(58, 63, 68, 0.5);
+  padding: 11px;
 }
 
 .form-expense label {
+  align-items: center;
   color: white;
   display: flex;
+}
+
+.form-expense input {
+  background-color: white;
+  border-radius: 0.25rem;
+  color: black;
+  margin-left: 4px;
+  padding: 8px;
+}
+
+.form-expense select {
+  background-color: white;
+  border-radius: 0.25rem;
+  color: black;
+  margin-left: 4px;
+  padding: 8px;
 }
 
 .form-expense {
