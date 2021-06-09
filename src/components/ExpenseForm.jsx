@@ -7,7 +7,7 @@ import { addExpense } from '../actions';
 class ExpenseForm extends Component {
   constructor() {
     super();
-    this.onHandleChange = this.onHandleChange.bind(this);
+    this.onHandleChange = this.onChange.bind(this);
     this.onHandleClick = this.onHandleClick.bind(this);
 
     this.state = {
@@ -26,7 +26,7 @@ class ExpenseForm extends Component {
     this.fetchCoins();
   }
 
-  onHandleChange({ target }) {
+  onChange({ target }) {
     this.setState({
       [target.id]: target.value,
     });
@@ -66,11 +66,11 @@ class ExpenseForm extends Component {
         <form className="form-expense">
           <label htmlFor="valor">
             Valor:
-            <input type="number" id="valor" onChange={ this.onHandleChange } />
+            <input className="vix" type="number" id="valor" onChange={ this.onChange } />
           </label>
           <label htmlFor="moeda">
             Moeda:
-            <select name="moeda" id="currency" onChange={ this.onHandleChange }>
+            <select name="moeda" id="currency" onChange={ this.onChange }>
               {isFetched
                 ? exchangeRates.map((moeda) => (
                   <option key={ moeda.code } value={ moeda.code }>
@@ -81,7 +81,7 @@ class ExpenseForm extends Component {
           </label>
           <label htmlFor="metodo">
             Método de pagamento:
-            <select name="metodo" id="method" onChange={ this.onHandleChange }>
+            <select name="metodo" id="method" onChange={ this.onChange }>
               <option value="Dinheiro">Dinheiro</option>
               <option value="Cartão de crédito">Cartão de crédito</option>
               <option value="Debito">Cartão de débito</option>
@@ -89,7 +89,7 @@ class ExpenseForm extends Component {
           </label>
           <label htmlFor="tag">
             Tag:
-            <select name="tag" id="tag" onChange={ this.onHandleChange }>
+            <select name="tag" id="tag" onChange={ this.onChange }>
               <option value="Alimentação">Alimentação</option>
               <option value="Lazer">Lazer</option>
               <option value="Trabalho">Trabalho</option>
@@ -99,7 +99,7 @@ class ExpenseForm extends Component {
           </label>
           <label htmlFor="descricao">
             Descrição:
-            <input type="text" id="description" onChange={ this.onHandleChange } />
+            <input type="text" id="description" onChange={ this.onChange } />
           </label>
           {this.renderButton()}
         </form>
