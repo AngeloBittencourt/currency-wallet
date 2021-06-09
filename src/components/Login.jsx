@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { login as loginAction } from '../actions';
 
-// import banner from '../images/wallet-money-removebg-preview.png';
+import banner from '../images/wallet-money-removebg-preview.png';
 
 class LoginForm extends Component {
   constructor() {
@@ -43,38 +44,42 @@ class LoginForm extends Component {
   render() {
     return (
       <main>
-        <h1>Página de login</h1>
-        <section>
-          {/* <img src={ banner } alt="Money Banner" width="300px" /> */}
+        <h1 id="logo">Página de login</h1>
+        <section id="divCenter">
+          <img src={ banner } alt="Money Banner" width="250px" />
+          <div id="login-item">
 
-          <label htmlFor="email">
-            <input
-              placeholder="E-mail"
-              type="email"
-              name="email"
-              id="email"
-              onChange={ this.onHandleChange }
-              data-testid="email-input"
-            />
-          </label>
-          <label htmlFor="password">
-            <input
-              placeholder="Senha"
-              type="password"
-              name="password"
-              id="password"
-              onChange={ this.onHandleChange }
-              data-testid="password-input"
-            />
-          </label>
-          <input
-            id="buttonLogin"
-            type="button"
-            value="Entrar"
-            onClick={ this.onHandleClick }
-            disabled={ !this.validateLogin() }
-          />
+            <label htmlFor="email">
+              <input
+                placeholder="E-mail"
+                type="email"
+                name="email"
+                id="email"
+                onChange={ this.onHandleChange }
+                data-testid="email-input"
+              />
+            </label>
+            <label htmlFor="password">
+              <input
+                placeholder="Senha"
+                type="password"
+                name="password"
+                id="password"
+                onChange={ this.onHandleChange }
+                data-testid="password-input"
+              />
+            </label>
+            <Link to="/carteira">
+              <input
+                id="buttonLogin"
+                type="button"
+                value="Entrar"
+                onClick={ this.onHandleClick }
+                disabled={ !this.validateLogin() }
+              />
+            </Link>
 
+          </div>
         </section>
       </main>
     );

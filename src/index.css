@@ -1,8 +1,17 @@
 body {
-  margin: 0;
+  align-items: center;
+  background: #222;
+  background: #16222a; /* fallback for old browsers */
+  background: linear-gradient(to top, #16222a, #3a6073); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #16222a, #3a6073); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* Remember to use the other versions for IE 10 and older browsers! */
+  display: flex;  
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  justify-content: center;
+  margin: 0;
+  min-height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +19,82 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+html {
+  height: 100%;
+}
+
+#divCenter {
+  align-items: center;
+  background: rgba(58, 63, 68, 0.5);
+  border-radius: 5px;
+  box-shadow: 0 1.5px 0 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+
+#logo {
+  font-family: 'museo-slab';
+  font-size: 20px;
+  margin: 0;
+  padding: 20px 20px 0;
+  text-align: center;
+}
+
+.login-item {
+  border-radius: 3px;
+  display: flex;
+  margin: 20px 20px 0;
+  padding: 25px 25px 0;
+}
+
+input {
+  display: flex;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+}
+
+#password , #email {
+  width: 100%;
+}
+
+#buttonLogin {
+  display: flex;
+  width: 50%;
+}
+
+label , #email , #password  , #buttonLogin {
+  border-radius: 0.25rem;
+  color: #3a3f44;
+  padding: 1rem;
+}
+
+#email , #password {
+  background-color: #fff;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+#email:focus , #email:hover , #password :focus , #password :hover {
+  background-color: #eee;
+}
+
+#buttonLogin {
+  background-color: #00b9bc;
+  color: #eee;
+  font-weight: bold;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#buttonLogin:focus ,#buttonLogin:hover {
+  background-color: #197071;
 }
