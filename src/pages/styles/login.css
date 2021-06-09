@@ -70,7 +70,7 @@ a {
   width: 35%;
 }
 
-label , .email , .password , .buttonLogin {
+.login-item label , .email , .password , .buttonLogin {
   border-radius: 0.25rem;
   color: #3a3f44;
   padding: 1rem;
@@ -115,4 +115,20 @@ header {
 
 .user-money {
   display: flex;
+}
+
+/* Fim do Heder */
+.div-form {
+  background: rgba(58, 63, 68, 0.5);
+}
+
+.form-expense label {
+  color: white;
+  display: flex;
+}
+
+.form-expense {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }

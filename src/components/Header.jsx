@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import logo from '../images/money-removebg-preview1.png';
+
 class Header extends Component {
   render() {
     const { email } = this.props;
     return (
       <main className="header-page">
         <header>
+          <section><img src={ logo } alt="logo-dinheiro" width="80px" /></section>
           <section className="user-info" data-testid="email-field">
             Usuário:
             {' '}

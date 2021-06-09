@@ -48,7 +48,6 @@ class LoginForm extends Component {
         <section className="divCenter">
           <img src={ banner } alt="Money Banner" width="250px" />
           <div className="login-item">
-
             <label htmlFor="email">
               <input
                 className="email"
@@ -81,7 +80,6 @@ class LoginForm extends Component {
                 disabled={ !this.validateLogin() }
               />
             </Link>
-
           </div>
         </section>
       </main>
