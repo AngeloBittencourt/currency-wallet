@@ -43,14 +43,15 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <main>
-        <h1 id="logo">Página de login</h1>
-        <section id="divCenter">
+      <main className="home-page">
+        <h1 className="logo">Página de login</h1>
+        <section className="divCenter">
           <img src={ banner } alt="Money Banner" width="250px" />
-          <div id="login-item">
+          <div className="login-item">
 
             <label htmlFor="email">
               <input
+                className="email"
                 placeholder="E-mail"
                 type="email"
                 name="email"
@@ -61,6 +62,7 @@ class LoginForm extends Component {
             </label>
             <label htmlFor="password">
               <input
+                className="password"
                 placeholder="Senha"
                 type="password"
                 name="password"
@@ -71,6 +73,7 @@ class LoginForm extends Component {
             </label>
             <Link to="/carteira">
               <input
+                className="buttonLogin"
                 id="buttonLogin"
                 type="button"
                 value="Entrar"
