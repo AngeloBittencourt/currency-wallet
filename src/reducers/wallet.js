@@ -3,8 +3,8 @@ const initialState = { currencies: [], expenses: [] };
 
 export default function wallet(state = initialState, action) {
   switch (action.type) {
-  case '':
-    return state;
+  case 'ADD':
+    return { ...state, expenses: [...state.expenses, action.expense] };
   default:
     return state;
   }

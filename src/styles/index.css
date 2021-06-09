@@ -137,6 +137,10 @@ header {
   padding: 8px;
 }
 
+#valor {
+  width: 80px;
+}
+
 .form-expense select {
   background-color: white;
   border-radius: 0.25rem;
