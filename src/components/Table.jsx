@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { deleteExpense } from '../actions';
+import { deleteExpense, editExpense } from '../actions';
 
 class Table extends Component {
-  deleteOnClick(thiID) {
+  deleteOnClick(thisId) {
     const { remover, expenses } = this.props;
-    const thisList = expenses.filter((expense) => expense.id !== thiID);
+    const thisList = expenses.filter((expense) => expense.id !== thisId);
     remover(thisList);
+  }
+
+  editOnClick(thisId) {
+    const { edit, expenses } = this.props;
+    const thisList = expenses.find((expense) => expense.id === thisId);
+    edit(thisList, true);
   }
 
   renderTable() {
@@ -31,6 +37,7 @@ class Table extends Component {
             className="edit-btn"
             type="button"
             data-testid="edit-btn"
+            onClick={ () => this.editOnClick(expense.id) }
           >
             Edit
           </button>
@@ -74,12 +81,14 @@ class Table extends Component {
 Table.propTypes = {
   expenses: PropTypes.arrayOf(Object).isRequired,
   remover: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ wallet: { expenses } }) => ({ expenses });
 
 const mapDispatchToProps = (dispatch) => ({
   remover: (expense) => dispatch(deleteExpense(expense)),
+  edit: (expense, isEdit) => dispatch(editExpense(expense, isEdit)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

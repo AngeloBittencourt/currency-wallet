@@ -123,6 +123,11 @@ header {
   padding: 11px;
 }
 
+.div-edit {
+  background: rgba(51, 77, 30, 0.5);
+  padding: 11px;
+}
+
 .form-expense label {
   align-items: center;
   color: white;
