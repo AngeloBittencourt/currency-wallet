@@ -159,7 +159,7 @@ header {
 hr {
   border-color: black;
   margin: 0;
-  width: 100%;
+  width: 99, 9%;
 }
 
 table {
@@ -173,11 +173,39 @@ thead tr {
 }
 
 th {
-  padding: 20px 45px;
+  padding: 20px 40px;
 }
 
 td {
   color: white;
   max-width: 150px;
   text-align: center;
+}
+
+.edit-btn {
+  background-color: #ece806;
+  border-radius: 0.25rem;
+  color: #3a3f44;
+  font-weight: 700;
+  padding: 0.5rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.edit-btn:hover {
+  background-color: #a19f14;
+}
+
+.delete-btn {
+  background-color: #ee3030;
+  border-radius: 0.25rem;
+  color: #3a3f44;
+  font-weight: 700;
+  padding: 0.5rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.delete-btn:hover {
+  background-color: #830909;
 }
