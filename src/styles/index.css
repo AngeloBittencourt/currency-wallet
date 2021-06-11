@@ -76,7 +76,7 @@ a {
   padding: 1rem;
 }
 
-.email:focus , .email:hover , .password :focus , .password :hover {
+.email:focus , .email:hover , .password:focus , .password:hover {
   background-color: #eee;
 }
 

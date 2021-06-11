@@ -30,6 +30,14 @@ class LoginForm extends Component {
     login(email);
   }
 
+  // handleKeypress(e) {
+  //   // it triggers by pressing the enter key
+  //   if (e.keyCode === 13) {
+  //     const button = document.getElementById('buttonLogin');
+  //     button.click();
+  //   }
+  // }
+
   validateLogin() {
     const { email, password } = this.state;
     const re = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
@@ -50,6 +58,7 @@ class LoginForm extends Component {
           <div className="login-item">
             <label htmlFor="email">
               <input
+                autoComplete="off"
                 className="email"
                 placeholder="E-mail"
                 type="email"
@@ -66,6 +75,7 @@ class LoginForm extends Component {
                 type="password"
                 name="password"
                 id="password"
+                // onKeyPress={ this.handleKeypress }
                 onChange={ this.onHandleChange }
                 data-testid="password-input"
               />

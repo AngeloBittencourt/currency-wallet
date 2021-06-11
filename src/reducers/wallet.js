@@ -11,6 +11,8 @@ export default function wallet(state = initialState, action) {
     return { ...state, currencies: action.currency };
   case 'EDIT':
     return { ...state, isEdit: action.isEdit, expense: action.expense };
+  case 'SET_EXPENSES':
+    return { ...state, expenses: action.expenses };
   default:
     return state;
   }
