@@ -25,13 +25,11 @@ class Table extends Component {
   }
 
   onClickSave() {
-    const { expenses, edit, updateExpenses, expense } = this.props;
+    const { expenses, edit, update, expense } = this.props;
     const newList = {};
     const newExpense = { ...this.state };
-    const newExpensesList = expenses.map((list) => (
-      list.id === expense.id ? newExpense : list
-    ));
-    updateExpenses(newExpensesList);
+    const nl = expenses.map((list) => (list.id === expense.id ? newExpense : list));
+    update(nl);
     edit(newList, false);
   }
 
@@ -104,55 +102,97 @@ class Table extends Component {
     )));
   }
 
-  renderDrop() {
+  renderDropCoins() {
+    const { currency } = this.state;
     const { currencies } = this.props;
     if (currencies === '') {
-      console.log(currencies);
       return <option value="BRL"> BRL </option>;
     }
 
-    return currencies.map((moeda) => (
-      <option key={ moeda.code } value={ moeda.code }>
-        {moeda.code}
-      </option>));
+    return (
+      <select
+        data-testid="currency-input"
+        value={ currency }
+        id="currency"
+        onChange={ this.onChange }
+      >
+        {currencies.map((moeda) => (
+          <option key={ moeda.code } value={ moeda.code }>
+            {moeda.code}
+          </option>))}
+      </select>);
+  }
+
+  renderDropMethods() {
+    const { method } = this.state;
+    return (
+      <select
+        data-testid="method-input"
+        value={ method }
+        id="method"
+        onChange={ this.onChange }
+      >
+
+        <option value="Dinheiro">Dinheiro</option>
+        <option value="Cartão de crédito">Cartão de crédito</option>
+        <option value="Cartão de débito">Cartão de débito</option>
+      </select>);
+  }
+
+  renderDropTags() {
+    const { tag } = this.state;
+    return (
+      <select
+        data-testid="tag-input"
+        value={ tag }
+        id="tag"
+        onChange={ this.onChange }
+      >
+        <option value="Alimentação">Alimentação</option>
+        <option value="Lazer">Lazer</option>
+        <option value="Trabalho">Trabalho</option>
+        <option value="Transporte">Transporte</option>
+        <option value="Saude">Saúde</option>
+      </select>);
   }
 
   renderEditForm() {
-    const { value, currency, method, tag, description } = this.state;
+    const { value, description } = this.state;
     return (
       <section className="div-edit">
         <form className="form-edit-expense">
           <label htmlFor="value">
             Valor:
-            <input data-testid="value-input" value={ value } className="vix" type="number" id="value" onChange={ this.onChange } />
+            <input
+              data-testid="value-input"
+              value={ value }
+              className="vix"
+              type="number"
+              id="value"
+              onChange={ this.onChange }
+            />
           </label>
           <label htmlFor="currency">
             Moeda:
-            <select data-testid="currency-input" value={ currency } name="moeda" id="currency" onChange={ this.onChange }>
-              {this.renderDrop()}
-            </select>
+            {this.renderDropCoins()}
           </label>
           <label htmlFor="method">
             Método de pagamento:
-            <select data-testid="method-input" value={ method } name="método de pagamento" id="method" onChange={ this.onChange }>
-              <option value="Dinheiro">Dinheiro</option>
-              <option value="Cartão de crédito">Cartão de crédito</option>
-              <option value="Cartão de débito">Cartão de débito</option>
-            </select>
+            {this.renderDropMethods()}
           </label>
           <label htmlFor="tag">
             Tag:
-            <select data-testid="tag-input" value={ tag } name="tag" id="tag" onChange={ this.onChange }>
-              <option value="Alimentação">Alimentação</option>
-              <option value="Lazer">Lazer</option>
-              <option value="Trabalho">Trabalho</option>
-              <option value="Transporte">Transporte</option>
-              <option value="Saude">Saúde</option>
-            </select>
+            {this.renderDropTags()}
           </label>
           <label htmlFor="description">
             Descrição:
-            <input data-testid="description-input" value={ description } autoComplete="off" type="text" id="description" onChange={ this.onChange } />
+            <input
+              data-testid="description-input"
+              value={ description }
+              type="text"
+              id="description"
+              onChange={ this.onChange }
+            />
           </label>
           {this.renderSaveButton()}
         </form>
@@ -178,7 +218,7 @@ class Table extends Component {
         </thead>
         <tbody>
           { this.renderTable() }
-          {isEdit ? this.renderEditForm() : console.log('Filé Mignon')}
+          {isEdit ? this.renderEditForm() : console.log('')}
         </tbody>
       </table>
     );
@@ -187,16 +227,22 @@ class Table extends Component {
 
 Table.propTypes = {
   expenses: PropTypes.arrayOf(Object).isRequired,
+  currencies: PropTypes.arrayOf(Object).isRequired,
+  isEdit: PropTypes.bool.isRequired,
   remover: PropTypes.func.isRequired,
+  update: PropTypes.func.isRequired,
   edit: PropTypes.func.isRequired,
-};
+  expense: PropTypes.arrayOf(),
+}.isRequired;
 
-const mapStateToProps = ({ wallet: { expenses, currencies, isEdit, expense } }) => ({ expenses, currencies, isEdit, expense });
+const mapStateToProps = ({ wallet: { expenses, currencies, isEdit, expense } }) => ({
+  expenses, currencies, isEdit, expense,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   remover: (expense) => dispatch(deleteExpense(expense)),
   edit: (expense, isEdit) => dispatch(editExpense(expense, isEdit)),
-  updateExpenses: (expenses) => dispatch(setExpenses(expenses)),
+  update: (expenses) => dispatch(setExpenses(expenses)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
