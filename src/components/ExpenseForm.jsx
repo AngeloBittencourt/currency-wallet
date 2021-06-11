@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import coinsFetch from '../services/Api';
-import { addExpense, updateCurrencies } from '../actions';
+import { addExpense, editExpense, updateCurrencies } from '../actions';
 
 class ExpenseForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.onChange = this.onChange.bind(this);
     this.onClickAdd = this.onClickAdd.bind(this);
+    this.onClickEdit = this.onClickEdit.bind(this);
 
     this.state = {
       id: 0,
@@ -49,7 +50,13 @@ class ExpenseForm extends Component {
   }
 
   onClickEdit() {
+    const { edit } = this.props;
+    const newList = {};
+    edit(newList, false);
 
+    const form = document.getElementsByClassName('form-expense');
+
+    (form)[0].reset();
   }
 
   async fetchCoins() {
@@ -86,8 +93,8 @@ class ExpenseForm extends Component {
     return (<input
       className="buttonLogin"
       type="button"
-      value="Salvar alteração"
-      onClick={ this.onClickAdd }
+      value="Editar despesa"
+      onClick={ this.onClickEdit }
     />);
   }
 
@@ -133,13 +140,12 @@ class ExpenseForm extends Component {
   }
 
   renderEditForm() {
-    const { expense } = this.props;
     return (
       <section className="div-edit">
         <form className="form-expense">
           <label htmlFor="value">
             Valor:
-            <input value={ expense.value } className="vix" type="number" id="value" onChange={ this.onChange } />
+            <input className="vix" type="number" id="value" onChange={ this.onChange } />
           </label>
           <label htmlFor="currency">
             Moeda:
@@ -167,7 +173,7 @@ class ExpenseForm extends Component {
           </label>
           <label htmlFor="description">
             Descrição:
-            <input value={ expense.description } type="text" id="description" onChange={ this.onChange } />
+            <input type="text" id="description" onChange={ this.onChange } />
           </label>
           {this.renderSaveButton()}
         </form>
@@ -187,12 +193,15 @@ class ExpenseForm extends Component {
 ExpenseForm.propTypes = {
   expense: PropTypes.func.isRequired,
   currency: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
+  isEdit: PropTypes.bool.isRequired,
   currencies: PropTypes.arrayOf(Object).isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   expense: (expenses) => dispatch(addExpense(expenses)),
   currency: (currencies) => dispatch(updateCurrencies(currencies)),
+  edit: (expense, isEdit) => dispatch(editExpense(expense, isEdit)),
 });
 
 const mapStateToProps = ({ wallet: { currencies, expense, isEdit } }) => (
