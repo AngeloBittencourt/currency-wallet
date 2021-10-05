@@ -29,5 +29,5 @@ Para iniciar o desenvolvimento, é necessário clonar o repositório do GitHub, 
 ```shell
 cd "diretorio de sua preferencia"
 git clone git@github.com:AngeloBittencourt/TrybeWallet.git
-cd Project-TrybeWallet
+cd TrybeWallet
 npm install
