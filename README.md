@@ -18,7 +18,7 @@
 Neste projeto, o objetivo era consolidar o conhecimento adquirido, genrenciando o estado da aplicação com Redux e conectando-o aos componentes React. a partir da criação de um store, reducers, actions e dispatchers.
 
 
-## O que deverá ser desenvolvido
+## O que foi desenvolvido
 
   - Adicionar, remover e editar um gasto;
   - Visualizar uma tabelas com seus gastos;
