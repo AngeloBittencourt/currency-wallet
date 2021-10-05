@@ -217,8 +217,10 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
+      
           { this.renderTable() }
           {isEdit ? this.renderEditForm() : console.log('')}
+
         </tbody>
       </table>
     );
