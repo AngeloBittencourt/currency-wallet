@@ -19,6 +19,7 @@ Neste projeto, o objetivo era consolidar o conhecimento adquirido, genrenciando 
 
 
 ## O que foi desenvolvido
+Esta aplicação é uma carteira de controle de gastos com conversor de moedas, onde o usuário terá as opções de:
 
   - Adicionar, remover e editar um gasto;
   - Visualizar uma tabelas com seus gastos;
