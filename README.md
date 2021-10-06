@@ -3,7 +3,7 @@
 
 Para acesso direto na web entre no Link <a href="https://angelobittencourt.github.io/TrybeWallet/">Trybe Wallet</a>
 
-Informe qualquer email e qualquer senha com mais de 6 caracteres.
+Informe qualquer email e qualquer senha com 6 ou mais caracteres.
 Ex: teste@teste.com | 123456
 
 # Habilidades
