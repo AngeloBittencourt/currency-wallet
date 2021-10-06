@@ -3,6 +3,9 @@
 
 Para acesso direto na web entre no Link <a href="https://angelobittencourt.github.io/TrybeWallet/">Trybe Wallet</a>
 
+Informe qualquer email e qualquer senha com mais de 6 caracteres.
+Ex: teste@teste.com | 123456
+
 # Habilidades
 
   * Criar um store Redux em aplicações React
