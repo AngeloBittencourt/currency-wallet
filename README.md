@@ -1,7 +1,7 @@
 # Boas vindas ao repositório do projeto Trybe Wallet!
 #### Este projeto faz parte da formação Full Stack da <a href="https://www.betrybe.com/">Trybe</a>.
 
-Para acesso direto na web entre no Link<a href="https://angelobittencourt.github.io/TrybeWallet/">Trybe Wallet</a>
+Para acesso direto na web entre no Link <a href="https://angelobittencourt.github.io/TrybeWallet/">Trybe Wallet</a>
 
 # Habilidades
 
