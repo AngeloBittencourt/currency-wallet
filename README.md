@@ -1,7 +1,7 @@
-# Boas vindas ao repositório do projeto Trybe Wallet!
+# Boas vindas ao repositório do projeto Currency Wallet!
 #### Este projeto faz parte da formação Full Stack da <a href="https://www.betrybe.com/">Trybe</a>.
 
-Para acesso direto na web entre no Link <a href="https://angelobittencourt.github.io/TrybeWallet/">Trybe Wallet</a>
+Para acesso direto na web entre no Link <a href="https://angelobittencourt.github.io/TrybeWallet/">Currency Wallet</a>
 
 Informe qualquer email e qualquer senha com 6 ou mais caracteres.
 Ex: teste@teste.com | 123456
@@ -34,6 +34,6 @@ Esta aplicação é uma carteira de controle de gastos com conversor de moedas, 
 Para iniciar o desenvolvimento, é necessário clonar o repositório do GitHub, acessar o projeto Wallet e intalar as dependências:
 ```shell
 cd "diretorio de sua preferencia"
-git clone git@github.com:AngeloBittencourt/TrybeWallet.git
-cd TrybeWallet
+git clone git@github.com:AngeloBittencourt/currency-wallet.git
+cd currency-wallet
 npm install
